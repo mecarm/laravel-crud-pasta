@@ -14,7 +14,15 @@ class PastaController extends Controller
      */
     public function index()
     {
-        //
+        $pastas = Pasta::orderBy('id', 'asc')->paginate(4);
+
+        $data = [
+            'pastas' => $pastas
+        ];
+
+        // dd($data);
+
+        return view('pages.pasta.index', $data );
     }
 
     /**
