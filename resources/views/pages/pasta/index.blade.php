@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('page-title', 'Lista Pasta')
+
 @section('main-content')
     <h1 class="text-center">La lista della Pasta</h1>
 
@@ -21,9 +23,9 @@
                 <tr>
                     <td>{{$elem->id}}</td>
                     <td>
-                        {{-- <a href="{{route('pastas.show', $elem->id )}}"> --}}
+                        <a href="{{route('pastas.show', $elem->id )}}">
                             {{$elem->title}}
-                        {{-- </a> --}}
+                        </a>
                     </td>
                     <td>{!!$elem->description!!}</td>
                     <td>{{$elem->type}}</td>

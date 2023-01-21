@@ -52,9 +52,11 @@ class PastaController extends Controller
      * @param  \App\Models\Pasta  $pasta
      * @return \Illuminate\Http\Response
      */
-    public function show(Pasta $pasta)
+    public function show($id)
     {
-        //
+        $elem = Pasta::findOrFail($id);
+        // dd($elem);
+        return view('pages.pasta.show', compact('elem'));
     }
 
     /**
