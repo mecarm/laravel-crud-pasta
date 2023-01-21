@@ -8,7 +8,7 @@
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
           <a class="nav-link active" href="{{route('pastas.index')}}">Elenco Pasta</a>
-          <a class="nav-link active" href="#">Aggiungi Pasta</a>
+          <a class="nav-link active" href="{{route('pastas.create')}}">Aggiungi Pasta</a>
         </div>
       </div>
     </div>

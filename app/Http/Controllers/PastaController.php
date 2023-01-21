@@ -32,7 +32,7 @@ class PastaController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.pasta.create');
     }
 
     /**
@@ -43,7 +43,19 @@ class PastaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $new_record = new Pasta();
+        $new_record->fill($data);
+        // $new_record->title = $data['title'];
+        // $new_record->description = $data['description'];
+        // $new_record->type = $data['type'];
+        // $new_record->image = $data['image'];
+        // $new_record->cooking_time = $data['cooking_time'];
+        // $new_record->weight = $data['weight'];
+        $new_record->save();
+
+        return redirect()->route('pastas.show', ['pasta' => $new_record->id]);
     }
 
     /**
@@ -88,8 +100,11 @@ class PastaController extends Controller
      * @param  \App\Models\Pasta  $pasta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pasta $pasta)
+    public function destroy($id)
     {
-        //
+        $pasta = Pasta::findOrFail($id);
+        $pasta->delete();
+
+        return redirect()->route('pastas.index')->with('success', "Hai cancellato con successo la pasta: $pasta->title");
     }
 }
