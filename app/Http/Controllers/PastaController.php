@@ -77,9 +77,11 @@ class PastaController extends Controller
      * @param  \App\Models\Pasta  $pasta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pasta $pasta)
+    public function edit($id)
     {
-        //
+        $pasta = Pasta::findOrFail($id);
+
+        return view('pages.pasta.edit', compact('pasta'));
     }
 
     /**
@@ -89,10 +91,24 @@ class PastaController extends Controller
      * @param  \App\Models\Pasta  $pasta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pasta $pasta)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $pasta = Pasta::findOrFail($id);
+        $request->validate(
+            [
+                'title' => 'required|max:50'
+            ],
+            [
+                'title.required' => 'Attenzione il campo title è obbligatorio',
+                'title.max' => 'Attenzione il campo non deve superare i 50 caratteri'
+            ]
+        );
+        $pasta->update($data);
+
+        return redirect()->route('pastas.show', $pasta->id)->with('success', "Hai modificato con successo la pasta: $pasta->title");
     }
+    
 
     /**
      * Remove the specified resource from storage.

@@ -46,7 +46,7 @@
                     <td>{{$elem->image}}</td>
                     <td>{{$elem->cooking_time}}</td>
                     <td>{{$elem->weight}}</td>
-                     <td>
+                     <td class="d-flex">
                         <form action="{{route('pastas.destroy', $elem->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -54,6 +54,11 @@
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </form>
+                        <div class=" ms-1 btn btn-primary">
+                            <a class="text-light" href="{{route('pastas.edit', $elem->id)}}">
+                                 <i class="fa-solid fa-pen"></i>
+                            </a>
+                        </div>
                      </td>
                 </tr>
             @endforeach
