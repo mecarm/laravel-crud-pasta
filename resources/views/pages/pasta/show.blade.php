@@ -19,5 +19,6 @@ Pasta - {{$elem->title}}
     <p>
         {!!$elem->description!!}
     </p>
+    <p>Il tempo di cottura della pasta è : {{$elem->cooking_time}}</p>
 </div>
 @endsection
